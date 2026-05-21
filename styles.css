@@ -250,6 +250,10 @@ h1 {
 
 .profile-image img {
   width: min(78%, 260px);
+  aspect-ratio: 1;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius);
+  object-fit: cover;
   filter: drop-shadow(0 22px 26px rgba(0, 0, 0, 0.45));
 }
 
