@@ -1,41 +1,62 @@
-const vibeButton = document.querySelector("#vibeButton");
-const toast = document.querySelector("#toast");
 const navLinks = [...document.querySelectorAll(".nav a")];
+const hashLinks = [...document.querySelectorAll('a[href^="#"]')];
 const workItems = [...document.querySelectorAll(".work-item[data-github-url]")];
-const sections = navLinks
-.map((link) => document.querySelector(link.getAttribute("href")))
-.filter(Boolean);
+const slides = [...document.querySelectorAll(".hero, .section")];
 
-const palettes = [
-  { accent: "#caff2f", accent2: "#ff4f9f", accent3: "#4fc3ff", label: "Lime punch" },
-  { accent: "#7cf7ff", accent2: "#ffde59", accent3: "#ff4f9f", label: "Cyber soda" },
-  { accent: "#ff7a30", accent2: "#7cf7ff", accent3: "#d8ff5f", label: "Tangerine mode" }
-];
-
-let paletteIndex = 0;
-let toastTimer;
-
-function showToast(message) {
-  toast.textContent = message;
-  toast.classList.add("is-visible");
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => toast.classList.remove("is-visible"), 1800);
-}
-
-vibeButton.addEventListener("click", () => {
-  paletteIndex = (paletteIndex + 1) % palettes.length;
-  const palette = palettes[paletteIndex];
-  document.documentElement.style.setProperty("--accent", palette.accent);
-  document.documentElement.style.setProperty("--accent-2", palette.accent2);
-  document.documentElement.style.setProperty("--accent-3", palette.accent3);
-  showToast(`${palette.label} 적용 완료`);
-});
+let activeIndex = Math.max(0, slides.findIndex((slide) => `#${slide.id}` === window.location.hash));
+let isTransitioning = false;
+let touchStartY = 0;
 
 function openWorkItem(item) {
   const githubUrl = item.dataset.githubUrl;
   if (!githubUrl) return;
   window.open(githubUrl, "_blank", "noopener");
 }
+
+function setActiveNav(activeSlide) {
+  navLinks.forEach((link) => {
+    link.classList.toggle("is-active", link.getAttribute("href") === `#${activeSlide.id}`);
+  });
+}
+
+function showSlide(nextIndex) {
+  if (nextIndex < 0 || nextIndex >= slides.length || nextIndex === activeIndex || isTransitioning) return;
+
+  const currentSlide = slides[activeIndex];
+  const nextSlide = slides[nextIndex];
+  isTransitioning = true;
+
+  currentSlide.classList.remove("is-active");
+  currentSlide.classList.add("is-exiting");
+  nextSlide.classList.add("is-active");
+  setActiveNav(nextSlide);
+  history.replaceState(null, "", `#${nextSlide.id}`);
+
+  window.setTimeout(() => {
+    currentSlide.classList.remove("is-exiting");
+    activeIndex = nextIndex;
+    isTransitioning = false;
+  }, 650);
+}
+
+function moveSlide(direction) {
+  showSlide(activeIndex + direction);
+}
+
+slides.forEach((slide, index) => {
+  slide.classList.toggle("is-active", index === activeIndex);
+});
+setActiveNav(slides[activeIndex]);
+
+hashLinks.forEach((link) => {
+  link.addEventListener("click", (event) => {
+    const targetId = link.getAttribute("href");
+    const nextIndex = slides.findIndex((slide) => `#${slide.id}` === targetId);
+    if (nextIndex === -1) return;
+    event.preventDefault();
+    showSlide(nextIndex);
+  });
+});
 
 workItems.forEach((item) => {
   item.addEventListener("click", () => openWorkItem(item));
@@ -46,16 +67,31 @@ workItems.forEach((item) => {
   });
 });
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (!entry.isIntersecting) return;
-    navLinks.forEach((link) => {
-      link.classList.toggle("is-active", link.getAttribute("href") === `#${entry.target.id}`);
-    });
-  });
-}, {
-  rootMargin: "-45% 0px -45% 0px",
-  threshold: 0
+window.addEventListener("wheel", (event) => {
+  if (Math.abs(event.deltaY) < 18) return;
+  event.preventDefault();
+  moveSlide(event.deltaY > 0 ? 1 : -1);
+}, { passive: false });
+
+window.addEventListener("keydown", (event) => {
+  if (event.key === "ArrowDown" || event.key === "PageDown") {
+    event.preventDefault();
+    moveSlide(1);
+  }
+
+  if (event.key === "ArrowUp" || event.key === "PageUp") {
+    event.preventDefault();
+    moveSlide(-1);
+  }
 });
 
-sections.forEach((section) => observer.observe(section));
+window.addEventListener("touchstart", (event) => {
+  touchStartY = event.touches[0].clientY;
+}, { passive: true });
+
+window.addEventListener("touchend", (event) => {
+  const touchEndY = event.changedTouches[0].clientY;
+  const distance = touchStartY - touchEndY;
+  if (Math.abs(distance) < 48) return;
+  moveSlide(distance > 0 ? 1 : -1);
+}, { passive: true });

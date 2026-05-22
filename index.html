@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="작지만 선명한 개발자 자기소개 페이지">
-  <title>DEV.LOG | Compact Intro</title>
+  <title>DEV.LOG</title>
   <link href="styles.css" rel="stylesheet">
 </head>
 <body>
@@ -12,7 +12,7 @@
   <div class="site-shell topbar-inner">
     <a class="brand" href="#home" aria-label="홈으로 이동">
       <span class="brand-mark">DL</span>
-      <span>DEV.LOG / INTRO</span>
+      <span>DEV.LOG</span>
     </a>
     <nav class="nav" aria-label="페이지 섹션">
       <a href="#about">About</a>
@@ -22,8 +22,8 @@
   </div>
 </header>
 
-<main id="home" class="site-shell">
-  <section class="hero" aria-label="소개">
+<main class="site-shell deck">
+  <section class="hero" id="home" aria-label="소개">
     <div>
       <p class="eyebrow">Available for bold builds</p>
       <h1>안녕하세요,<br><span class="hero-name">유상록</span>입니다.</h1>
@@ -35,7 +35,6 @@
       <div class="hero-actions">
         <a class="button primary" href="#works">작업 보기</a>
         <a class="button" href="#contact">연락하기</a>
-        <button class="button icon" type="button" id="vibeButton" aria-label="페이지 포인트 컬러 변경" title="포인트 컬러 변경">↯</button>
       </div>
     </div>
 
@@ -165,8 +164,6 @@
 <footer class="site-shell">
   <span>© 2026 DEV.LOG. Built with plain HTML, CSS, and JavaScript.</span>
 </footer>
-
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script defer src="index.js"></script>
 </body>
