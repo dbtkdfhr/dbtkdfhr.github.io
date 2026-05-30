@@ -1,170 +1,54 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="작지만 선명한 개발자 자기소개 페이지">
-  <title>DEV.LOG</title>
+  <meta charset="UTF-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>유상록과의 채팅</title>
   <link href="styles.css" rel="stylesheet">
 </head>
 <body>
-<header class="topbar">
-  <div class="site-shell topbar-inner">
-    <a class="brand" href="#home" aria-label="홈으로 이동">
-      <span class="brand-mark">DL</span>
-      <span>DEV.LOG</span>
-    </a>
-    <nav class="nav" aria-label="페이지 섹션">
-      <a href="#about">About</a>
-      <a href="#works">Works</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </div>
-</header>
-
-<main class="site-shell deck">
-  <section class="hero" id="home" aria-label="소개">
-    <div>
-      <p class="eyebrow">Available for bold builds</p>
-      <h1>안녕하세요,<br><span class="hero-name">유상록</span>입니다.</h1>
-      <p class="hero-copy">
-        복잡한 문제를 작고 선명한 인터페이스로 바꾸는 걸 좋아합니다.
-        프론트엔드의 감각, 백엔드의 구조, 그리고 빠르게 실험하는 태도로
-        쓰기 좋은 서비스를 만듭니다.
-      </p>
-      <div class="hero-actions">
-        <a class="button primary" href="#works">작업 보기</a>
-        <a class="button" href="#contact">연락하기</a>
-      </div>
+<div class="phone-wrap">
+  <header class="chat-header">
+    <button class="back" type="button" onclick="location.href='../team/index.html'">‹</button>
+    <div class="header-avatar">
+      <img alt="유상록 프로필" data-profile-image="dbtkdfhr">
     </div>
+    <div class="header-info">
+      <div class="header-name">유상록</div>
+      <div class="header-status">복잡한 문제를 작고 선명한 인터페이스로 바꾸는 개발자</div>
+    </div>
+    <div class="header-icons">
+      <span>🔍</span>
+      <span>☰</span>
+    </div>
+  </header>
 
-    <aside class="profile-board" aria-label="프로필 카드">
-      <div class="profile-image">
-        <img src="https://github.com/dbtkdfhr.png?size=460" alt="유상록 GitHub 프로필 사진">
-      </div>
-      <div class="profile-meta">
-        <p>
-          <strong>Compact, but loud.</strong>
-          필요한 것만 남기고, 디테일은 끝까지 챙기는 타입.
-        </p>
-        <span class="status-pill">2026 PORTFOLIO</span>
-      </div>
-    </aside>
-  </section>
-
-  <section class="section" id="about">
-    <div class="section-head">
+  <main class="chat-body" id="chatBody">
+    <div class="date-divider"><span>2026년 5월 29일 금요일</span></div>
+    <section class="profile-card">
+      <img alt="유상록 프로필" data-profile-image="dbtkdfhr">
       <div>
-        <p class="section-kicker">01 / Identity</p>
-        <h2>힙하지만 산만하지 않게.</h2>
+        <strong>유상록 · PORTFLIX</strong>
+        <p>프론트엔드의 감각, 백엔드의 구조, 빠른 실험으로 쓰기 좋은 서비스를 만듭니다.</p>
       </div>
-    </div>
+    </section>
+  </main>
 
-    <div class="about-grid">
-      <div class="statement">
-        <p>
-          "실험은 빠르게,<br>
-          구현은 <strong>단단하게</strong>,<br>
-          결과는 명확하게."
-        </p>
-      </div>
-      <div class="bio">
-        <p>
-          화면을 예쁘게 만드는 것에서 끝나지 않고, 데이터 흐름과 사용자의 행동까지 같이 봅니다.
-          팀 프로젝트에서는 흐릿한 요구사항을 정리하고, 개인 프로젝트에서는 직접 부딪히며 완성도를 끌어올립니다.
-        </p>
-        <p>
-          관심사는 웹 인터랙션, 성능 최적화, 협업 도구, 그리고 오래 봐도 질리지 않는 UI입니다.
-          지금은 더 적은 코드로 더 똑똑하게 동작하는 제품을 만드는 쪽에 꽂혀 있습니다.
-        </p>
-        <div class="tag-list" aria-label="기술 키워드">
-          <span class="tag">HTML</span>
-          <span class="tag">CSS</span>
-          <span class="tag">JavaScript</span>
-          <span class="tag">React</span>
-          <span class="tag">TypeScript</span>
-          <span class="tag">Java</span>
-          <span class="tag">Spring Boot</span>
-        </div>
-      </div>
-    </div>
+  <section class="quick-replies" aria-label="빠른 질문">
+    <button data-question="자기소개">자기소개</button>
+    <button data-question="기술스택">기술스택</button>
+    <button data-question="프로젝트">프로젝트</button>
+    <button data-question="관심사">관심사</button>
+    <button data-question="연락처">연락처</button>
+    <button data-question="포트폴리오">포트폴리오</button>
   </section>
 
-  <section class="section" id="works">
-    <div class="section-head">
-      <div>
-        <p class="section-kicker">02 / Selected Work</p>
-        <h2>요란한 설명보다 결과물.</h2>
-      </div>
-    </div>
-
-    <div class="works">
-      <article class="work-item" data-github-url="https://github.com/dbtkdfhr/FlowERD" tabindex="0" role="link" aria-label="FlowERD GitHub 저장소로 이동">
-        <div>
-          <h3>FlowERD</h3>
-          <p>
-            순수 SVG 기반으로 만든 ERD 다이어그램 툴. 직접 렌더링 흐름을 설계하며
-            인터랙션과 구조를 깊게 다뤘습니다.
-          </p>
-        </div>
-        <span class="work-chip">SVG / Next.js</span>
-      </article>
-
-      <article class="work-item" data-github-url="https://github.com/schemafy/schemafy" tabindex="0" role="link" aria-label="Schemafy GitHub 저장소로 이동">
-        <div>
-          <h3>Schemafy</h3>
-          <p>
-            실시간 협업을 염두에 둔 다이어그램 플랫폼. 인증, API 구조, 협업 경험을
-            제품 관점에서 함께 설계했습니다.
-          </p>
-        </div>
-        <span class="work-chip">NestJS / Monorepo</span>
-      </article>
-
-      <article class="work-item" data-github-url="https://github.com/day-23/haru-android" tabindex="0" role="link" aria-label="Haru GitHub 저장소로 이동">
-        <div>
-          <h3>Haru</h3>
-          <p>
-            일정관리와 SNS를 결합한 모바일 어플리케이션을 제작하였습니다.
-          </p>
-        </div>
-        <span class="work-chip">Kotlin / Android SDK</span>
-      </article>
-
-      <article class="work-item" data-github-url="https://github.com/kookmin-sw/capstone-2024-19" tabindex="0" role="link" aria-label="주문서 GitHub 저장소로 이동">
-        <div>
-          <h3>주문서</h3>
-          <p>
-            ChatGPT API를 연결하여 법률적인 문제 해결을 도와주는 챗봇 어플리케이션을 제작하였습니다.
-          </p>
-        </div>
-        <span class="work-chip">Flutter / BLoC</span>
-      </article>
-    </div>
-  </section>
-
-  <section class="section" id="contact">
-    <div class="contact-band">
-      <div>
-        <p class="section-kicker">03 / Contact</p>
-        <h2>재밌는 걸 만들 준비 완료.</h2>
-        <p>
-          협업 제안, 프로젝트 이야기, 포트폴리오 피드백까지 편하게 연락 주세요.
-          좋은 아이디어는 짧은 대화에서 시작되는 경우가 많으니까요.
-        </p>
-      </div>
-      <div class="hero-actions">
-        <a class="button primary" href="mailto:dbtkdfhr2000@naver.com">Email</a>
-        <a class="button" href="https://github.com/dbtkdfhr" target="_blank" rel="noreferrer">GitHub</a>
-      </div>
-    </div>
-  </section>
-</main>
-
-<footer class="site-shell">
-  <span>© 2026 DEV.LOG. Built with plain HTML, CSS, and JavaScript.</span>
-</footer>
-
-<script defer src="index.js"></script>
+  <footer class="chat-input-bar">
+    <span class="input-icon">+</span>
+    <input class="input-field" id="inputField" placeholder="유상록에게 물어보기"/>
+    <button class="send-btn" id="sendBtn" type="button">➤</button>
+  </footer>
+</div>
+<script src="script.js"></script>
 </body>
 </html>
